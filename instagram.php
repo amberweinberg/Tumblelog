@@ -22,7 +22,7 @@ function getFollowgram($u) {
         preg_match_all('#<link>(.*)</link>#Us', $item, $temp);
         $link = $temp[1][0];
         preg_match_all('#<pubDate>(.*)</pubDate>#Us', $item, $temp);
-        $date = date("d-m-Y H:i:s",strtotime($temp[1][0]));
+        $date = date("d-m-Y h:i:s",strtotime($temp[1][0]));
         preg_match_all('#<title>(.*)</title>#Us', $item, $temp);
         $title = $temp[1][0];
         preg_match_all('#<img src="([^>]*)">#Us', $item, $temp);

@@ -8,10 +8,10 @@
      */
      
     // Configuration.
-    $numTweets = 50;
+    $numTweets = 20;
     $name = 'amberweinberg';
     $transName = 'list-tweets'; // Name of value in database.
-    $cacheTime = 5; // Time in minutes between updates.
+    $cacheTime = 1; // Time in minutes between updates.
     
     // Do we already have saved tweet data? If not, lets get it.
     if(false === ($tweets = get_transient($transName) ) ) :    
