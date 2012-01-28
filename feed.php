@@ -6,7 +6,7 @@
 		<span class="icon"></span>
 		<?php if($i['type'] == 'Twitter') : ?>
 			<?php echo $i['text']; ?>
-		<?php elseif($i['type'] == 'WP' || $i['type'] == 'WP2' || $i['type'] == 'github') : ?>
+		<?php elseif($i['type'] == 'WP' || $i['type'] == 'WP2' || $i['type'] == 'github' || $i['type'] == 'lanyrd') : ?>
 			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">'.$i['title'].'</a>' ?>
 		<?php elseif($i['type'] == 'foursquare') : ?>
 			<?php echo 'Amber was '.$i['description'].'' ?>
@@ -14,6 +14,8 @@
 			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">'.$i['title'] .$i['description'].'</a>' ?>
 		<?php elseif($i['type'] == 'pinterest' || $i['type'] == 'goodreads') : ?>
 			<?php echo $i['description'] ?>
+		<?php elseif($i['type'] == 'meetup') : ?>
+			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">I RSVP\'d to'.$i['title'].'</a>' ?>
 		<?php endif; ?>
 
 		<span class="time"><?php echo date('D jS M - g:i a', $i['time']); ?> from 
@@ -37,6 +39,10 @@
 				<a title="Find me on pinterest" href="http://pinterest.com/amberweinberg" target="_blank">Pinterest</a>
 			<?php elseif($i['type'] == 'goodreads') : ?>
 				<a title="Find me on goodreads" href="http://www.goodreads.com/user/show/2891681-amber-weinberg" target="_blank">Goodreads</a>
+			<?php elseif($i['type'] == 'lanyrd') : ?>
+				<a title="Find me on lanyrd" href="http://lanyrd.com/profile/amberweinberg/" target="_blank">Lanyrd</a>
+			<?php elseif($i['type'] == 'meetup') : ?>
+				<a title="Find me on meetup" href="http://www.meetup.com/The-London-Knitting-Group/members/6078908/" target="_blank">Meetup</a>
 			<?php endif; ?>
 		</span>
 	</li>

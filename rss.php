@@ -183,6 +183,43 @@
 		$feed[ $goodreads['time'] ] = $goodreads;
 	endforeach;
 	
+	/* Add meetup, you'll need to convert meetup's .ics file to RSS…I used Yahoo Pipes for this*/
+	
+	$rss10 = fetch_feed('http://pipes.yahoo.com/pipes/pipe.run?_id=6c0168801909ce354908050659f9f56c&_render=rss');
+	if (!is_wp_error( $rss10) ) : 
+	    $maxitems10 = $rss10->get_item_quantity(20); 
+	    $rss_items10 = $rss10->get_items(0, $maxitems10); 
+	endif;
+	
+	if ($maxitems10 == 0) echo '<li>Apparently I\'m not attending any events right now :(</li>';
+	else
+	foreach ( $rss_items10 as $item10 ) :
+		$meetup = array('type' => 'meetup');
+		$meetup['time'] = strtotime($item9->get_date());
+		$meetup['description'] = $item10->get_description();
+		$meetup['link'] = $item10->get_link();
+		$meetup['title'] = $item10->get_title();
+		$feed[ $meetup['time'] ] = $meetup;
+	endforeach;
+	
+	// Add meetup
+	
+	$rss11 = fetch_feed('http://www.meetup.com/events/rss/6078908/05c220cb396b976238d428d0156569c7a1421ed8/going');
+	if (!is_wp_error( $rss11) ) : 
+	    $maxitems11 = $rss11->get_item_quantity(20); 
+	    $rss_items11 = $rss11->get_items(0, $maxitems11); 
+	endif;
+	
+	if ($maxitems11 == 0) echo '<li>Apparently I\'m not attending any meetups right now :(</li>';
+	else
+	foreach ( $rss_items11 as $item11 ) :
+		$meetup = array('type' => 'meetup');
+		$meetup['time'] = strtotime($item9->get_date());
+		$meetup['description'] = $item11->get_description();
+		$meetup['link'] = $item11->get_link();
+		$meetup['title'] = $item11->get_title();
+		$feed[ $meetup['time'] ] = $meetup;
+	endforeach;
 	
 	//Now sort them (Keys are timestamps)
 	krsort($feed);
