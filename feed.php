@@ -6,16 +6,22 @@
 		<span class="icon"></span>
 		<?php if($i['type'] == 'Twitter') : ?>
 			<?php echo $i['text']; ?>
-		<?php elseif($i['type'] == 'WP' || $i['type'] == 'WP2' || $i['type'] == 'github' || $i['type'] == 'lanyrd') : ?>
+		<?php elseif($i['type'] == 'WP' || $i['type'] == 'WP2' || $i['type'] == 'github') : ?>
 			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">'.$i['title'].'</a>' ?>
 		<?php elseif($i['type'] == 'foursquare') : ?>
 			<?php echo 'Amber was '.$i['description'].'' ?>
 		<?php elseif($i['type'] == 'dribbble' || $i['type'] == 'Instagram' || $i['type'] == 'ravelry') : ?>
 			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">'.$i['title'] .$i['description'].'</a>' ?>
-		<?php elseif($i['type'] == 'pinterest' || $i['type'] == 'goodreads') : ?>
+		<?php elseif($i['type'] == 'pinterest') : ?>
 			<?php echo $i['description'] ?>
 		<?php elseif($i['type'] == 'meetup') : ?>
 			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">I RSVP\'d to'.$i['title'].'</a>' ?>
+		<?php elseif($i['type'] == 'lanyrd') : ?>
+			<?php echo 'I\'m attending <a title="'.$i['title'].'" href="'.$i['link'].'">'.$i['title'].'</a> on '.date('jS M Y', $i['time']) ?>
+		<?php elseif($i['type'] == 'goodreads') : ?>
+			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">'.$i['title'].'</a>' .$i['description'] ?>
+		<?php elseif($i['type'] == 'codesnippit') : ?>
+			<?php echo '<a title="'.$i['title'].'" href="'.$i['link'].'">'.$i['description'].'</a>' ?>
 		<?php endif; ?>
 
 		<span class="time"><?php echo date('D jS M - g:i a', $i['time']); ?> from 
@@ -43,6 +49,8 @@
 				<a title="Find me on lanyrd" href="http://lanyrd.com/profile/amberweinberg/" target="_blank">Lanyrd</a>
 			<?php elseif($i['type'] == 'meetup') : ?>
 				<a title="Find me on meetup" href="http://www.meetup.com/The-London-Knitting-Group/members/6078908/" target="_blank">Meetup</a>
+			<?php elseif($i['type'] == 'codesnippit') : ?>
+				<a title="Find me on codesnippit" href="http://codesnipp.it/amberweinberg" target="_blank">Codesnippit</a>
 			<?php endif; ?>
 		</span>
 	</li>

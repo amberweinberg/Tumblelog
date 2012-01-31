@@ -183,9 +183,9 @@
 		$feed[ $goodreads['time'] ] = $goodreads;
 	endforeach;
 	
-	/* Add meetup, you'll need to convert meetup's .ics file to RSS…I used Yahoo Pipes for this*/
+	/* Add lanyrd, you'll need to convert meetup's .ics file to RSS…I used Yahoo Pipes for this*/
 	
-	$rss10 = fetch_feed('http://pipes.yahoo.com/pipes/pipe.run?_id=6c0168801909ce354908050659f9f56c&_render=rss');
+	$rss10 = fetch_feed('http://pipes.yahoo.com/pipes/pipe.run?_id=23883ead4a9fa9a34faddff69a89ddd5&_render=rss');
 	if (!is_wp_error( $rss10) ) : 
 	    $maxitems10 = $rss10->get_item_quantity(20); 
 	    $rss_items10 = $rss10->get_items(0, $maxitems10); 
@@ -194,12 +194,12 @@
 	if ($maxitems10 == 0) echo '<li>Apparently I\'m not attending any events right now :(</li>';
 	else
 	foreach ( $rss_items10 as $item10 ) :
-		$meetup = array('type' => 'meetup');
-		$meetup['time'] = strtotime($item9->get_date());
-		$meetup['description'] = $item10->get_description();
-		$meetup['link'] = $item10->get_link();
-		$meetup['title'] = $item10->get_title();
-		$feed[ $meetup['time'] ] = $meetup;
+		$lanyrd = array('type' => 'lanyrd');
+		$lanyrd['time'] = strtotime($item10->get_date());
+		$lanyrd['description'] = $item10->get_description();
+		$lanyrd['link'] = $item10->get_link();
+		$lanyrd['title'] = $item10->get_title();
+		$feed[ $lanyrd['time'] ] = $lanyrd;
 	endforeach;
 	
 	// Add meetup
@@ -214,11 +214,29 @@
 	else
 	foreach ( $rss_items11 as $item11 ) :
 		$meetup = array('type' => 'meetup');
-		$meetup['time'] = strtotime($item9->get_date());
+		$meetup['time'] = strtotime($item11->get_date());
 		$meetup['description'] = $item11->get_description();
 		$meetup['link'] = $item11->get_link();
 		$meetup['title'] = $item11->get_title();
 		$feed[ $meetup['time'] ] = $meetup;
+	endforeach;
+	
+	// Add codesnippit
+	
+	$rss12 = fetch_feed('http://codesnipp.it/amberweinberg?rss');
+	if (!is_wp_error( $rss12) ) : 
+	    $maxitems12 = $rss12->get_item_quantity(20); 
+	    $rss_items12 = $rss12->get_items(0, $maxitems12); 
+	endif;
+	
+	if ($maxitems12 == 0) echo '<li>Apparently I\'m not attending any codesnippits right now :(</li>';
+	else
+	foreach ( $rss_items12 as $item12 ) :
+		$codesnippit = array('type' => 'codesnippit');
+		$codesnippit['time'] = strtotime($item12->get_date());
+		$codesnippit['description'] = $item12->get_description();
+		$codesnippit['link'] = $item12->get_link();
+		$feed[ $codesnippit['time'] ] = $codesnippit;
 	endforeach;
 	
 	//Now sort them (Keys are timestamps)
